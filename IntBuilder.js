@@ -2,10 +2,9 @@ import BuilderES6 from './BuilderES6.js'
 
 // ES6 Way
 export default class IntBuilder extends BuilderES6 {
-  constructor (operand) {
-    super(operand ?? 0)
+  constructor (operand = 0) {
+    super(operand)
     IntBuilder.#throwErrorIfValueNotAnInteger(this._currentResult)
-    this._currentResult = +this._currentResult
   }
 
   plus (...values) {
@@ -18,7 +17,7 @@ export default class IntBuilder extends BuilderES6 {
   minus (...values) {
     for (const value of values) {
       IntBuilder.#throwErrorIfValueNotAnInteger(value)
-      this._currentResult -= +value
+      this._currentResult -= value
     }
     return this
   }
@@ -31,13 +30,13 @@ export default class IntBuilder extends BuilderES6 {
 
   divide (value) {
     IntBuilder.#throwErrorIfValueNotAnInteger(value)
-    this._currentResult = Math.floor(this._currentResult / +value)
+    this._currentResult = Math.floor(this._currentResult / value)
     return this
   }
 
   mod (value) {
     IntBuilder.#throwErrorIfValueNotAnInteger(value)
-    this._currentResult = this._currentResult % +value
+    this._currentResult = this._currentResult % value
     return this
   }
 

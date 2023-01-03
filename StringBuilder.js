@@ -3,7 +3,7 @@ import BuilderES5 from './BuilderES5.js'
 
 export default function StringBuilder (initialValue = '') {
   StringBuilder._throwErrorIfValueNotAString(initialValue)
-  BuilderES5.prototype.constructor.call(this, initialValue)
+  BuilderES5.call(this, initialValue)
 }
 
 StringBuilder.prototype = Object.create(BuilderES5.prototype)
@@ -17,7 +17,7 @@ StringBuilder.prototype.minus = function (charsCountToCut) {
 
 StringBuilder.prototype.multiply = function (repeatTimes) {
   StringBuilder._throwErrorIfValueNotAnInteger(repeatTimes)
-  const curValue = this._currentResult
+  var curValue = this._currentResult
   for (let i = 1; i < repeatTimes; i++) {
     this.plus(curValue)
   }
@@ -26,7 +26,7 @@ StringBuilder.prototype.multiply = function (repeatTimes) {
 
 StringBuilder.prototype.divide = function (n) {
   StringBuilder._throwErrorIfValueNotAnInteger(n)
-  const charsToLeave = Math.floor(this._currentResult.length / n)
+  var charsToLeave = Math.floor(this._currentResult.length / n)
   this._currentResult = this._currentResult.slice(0, charsToLeave)
   return this
 }

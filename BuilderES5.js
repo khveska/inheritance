@@ -2,9 +2,9 @@ export default function BuilderES5 (initialValue) {
   this._currentResult = initialValue
 }
 
-BuilderES5.prototype.plus = function (...values) {
-  for (const value of values) {
-    this._currentResult += value
+BuilderES5.prototype.plus = function () {
+  for (var i = 0; i < arguments.length; i++) {
+    this._currentResult += arguments[i]
   }
   return this
 }
